@@ -1,154 +1,234 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Demo Sample</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!--Montserrat font-->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
-  </head>
-  <body>   
-    <section>
-      <!-- MOBILE NAVIGATION -->
-      <div class="w3-container w3-padding-16 w3-border-bottom w3-hide-medium w3-hide-large">
-        <a href="#home" class="w3-bar-item w3-button w3-hover-none">My Game</a>
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="toggleNavigation()">&#9776;</a>
-      </div>
-      <div id="mobile-nav" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-sticky">
-        <a href="#pitch" class="w3-bar-item w3-button w3-center w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green" onclick="toggleNavigation()">PITCH</a>
-        <a href="#theme" class="w3-bar-item w3-button w3-center w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green" onclick="toggleNavigation()">THEME</a>
-        <a href="#why" class="w3-bar-item w3-button w3-center w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green" onclick="toggleNavigation()">WHY</a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nature Nourish by Sharena Sharif</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #111;
+      scroll-behavior: smooth;
+    }
 
-      <!-- SOCIAL SECTION -->
-      <section class="image-section w3-quarter w3-fixed w3-padding-small">
-        <!--IMAGE/AVATAR-->
-        <img src="avatar.png" class="w3-circle w3-border w3-border-sand" style="border-width: 3px !important;"/>
-        <!--S0CIAL NETWORK BUTTONS-->
-        <div class="links w3-margin-top w3-padding-small">
-          <a class="icon-link w3-text-sand w3-hover-text-amber" href="#linkedin" target="_blank">
-             <i data-feather="linkedin"></i>
-          </a>
+    body {
+      display: flex;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 30%;
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 2em 1em;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .sidebar img {
+      width: 70%;
+      border-radius: 50%;
+      border: 3px solid white;
+      margin-bottom: 1em;
+    }
+
+    .main {
+      width: 70%;
+      padding: 2em 3em;
+      overflow-y: auto;
+      box-sizing: border-box;
+      background: #fff;
+    }
+
+    h1, h2, h3 {
+      color: #1a1a1a;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-top: 0.2em;
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size: 1.3em;
+      color: #444;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .section {
+      margin-bottom: 3em;
+      padding-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .icon-title {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+
+    .icon-title span {
+      margin-left: 0.5em;
+      font-size: 1.2em;
+    }
+
+    nav {
+      text-align: right;
+      margin-bottom: 2em;
+    }
+
+    nav a {
+      margin-left: 1.5em;
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 2px;
+      background: #4caf50;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    nav a:hover {
+      color: #4caf50;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 8px;
+      margin: 1em 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Daffodil Section */
+    .daffodil-section {
+      margin-top: 2em;
+      background: #f0f8ff;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .daffodil-box {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    .daffodil-img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .daffodil-description p {
+      font-size: 1.1em;
+      color: #444;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <img src="me.jpg" alt="Sharena Photo">
+      <p><strong>Sharena Sharif</strong></p>
+    </div>
+    <div class="main">
+      <nav>
+        <a href="#pitch">PITCH</a>
+        <a href="#theme">THEME</a>
+        <a href="#why">WHY</a>
+        <a href="#daffodil">DAFFODIL</a>
+      </nav>
+
+      <h2><em>"Save nature, and restore balance—your actions shape the future of the Earth!"</em></h2>
+      <h1>"NatureNourish"</h1>
+      <h3>HS Junior | Aspiring Game Designer</h3>
+
+      <iframe src=".jpg" title="Game Screenshot"></iframe>
+
+      <div id="pitch" class="section">
+        <div class="icon-title">
+          🎯 <span>PITCH</span>
         </div>
-        
-       
-      </section>
+        <p> NatureNourish: Step into the role of a guardian for Earth’s ecosystems in this exciting and immersive game! In NatureNourish, you focus on restoring and nurturing the environment by planting flowers, seeds, and greenery. As you progress, you'll unlock new techniques and learn how small actions can make a huge impact! Grow more plants, restore wildlife, and ultimately, help nature flourish again. Can you move with efficiency, quickly plant the seeds, before it’s too late and restore harmony to the Earth?</p>
+      </div>
 
-      <!-- CONTENT SECTION-->
-      <section class="w3-threequarter w3-padding-large w3-right">
-        <!--DESKTOP NAVIGATION-->
-        <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
-          <a href="#home" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-green">GAME</a>
-          <a href="#why" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green w3-right w3-hide-small" style="border-width: 2px !important;" onclick="toggleNavigation()">WHY</a>
-          <a href="#theme" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green w3-right w3-hide-small" style="border-width: 2px !important;" onclick="toggleNavigation()">THEME</a>
-          <a href="#pitch" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green w3-right w3-hide-small" style="border-width: 2px !important;" onclick="toggleNavigation()">PITCH</a>
+      <div id="theme" class="section">
+        <div class="icon-title">
+          🌱 <span>THEME – Nurture Yourself with Nature</span>
         </div>
-        <div class="content-container w3-margin-top-2">
-          <!--HOME SECTION-->
-          <div id="home" class="home w3-container w3-margin-top-4 w3-cursive">
-            <center>
-            <p style="font-style: italic; font-size:x-large;">"The mind is the limit. When you face your struggles, you overcome them."</p>
-            <h1>MY AWESOME GAME</h1>
-            <h2>Pepito Perez (HS Freshman )</h2>
-            <h3>Game Developer in the Making</h3>
-            <p></p></center>
-          </div>
-<div> <!-- you May use a video
-  <video width="1000" height="740" controls>
-  <source src="movie.mp4" type="video/mp4">
-</video>
-  
-  -->
-  <iframe width="392" height="620" style="border: 0px;" src="https://studio.code.org/projects/applab/xXnuaCXU2NIncxOwOfdVzHh261yXmJE6xguSA0BZ2Bc/embed"></iframe>
+        <p>This game explores the connection between mental health and the environment. The more the player nurtures nature, the brighter and more calming the world becomes. The game mechanics reflect the message: you must take care of the world around you to move forward and feel at peace.</p>
+      </div>
 
-  <!--<iframe src="https://play.unity.com/en/games/1ac0fb59-0583-4d44-89f3-0dec0e5a0b2e/rab-to-g4c" height="700" width="900" title="Iframe Example"></iframe>
---></div>
-          <!--pitch SECTION-->
-          <div id="pitch" class="w3-container w3-margin-top-20-percent w3-cursive w3-large">
-            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">PITCH</h2>
-            <p class="w3-margin-top-2"> 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               Nam porttitor sollicitudin efficitur. 
-               Integer posuere odio vel ullamcorper euismod. 
-               Aliquam sit amet nulla tortor. 
-               Integer vehicula nunc et condimentum feugiat. 
-               Aenean tempor, dolor in pharetra euismod, lacus eros suscipit massa, in aliquet risus orci non leo.
-            </p>
-            <p class=""> 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               Nam porttitor sollicitudin efficitur. 
-               Integer posuere odio vel ullamcorper euismod. 
-               Aliquam sit amet nulla tortor. 
-               Integer vehicula nunc et condimentum feugiat. 
-               Aenean tempor, dolor in pharetra euismod, lacus eros suscipit massa, in aliquet risus orci non leo.
-            </p>
-            
-          </div>
-           <!--Theme SECTION-->
-          <div id="theme" class="w3-container w3-margin-top-20-percent w3-cursive w3-large">
-            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">THEME</h2>
-            <p class="w3-margin-top-2"> 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               Nam porttitor sollicitudin efficitur. 
-               Integer posuere odio vel ullamcorper euismod. 
-               Aliquam sit amet nulla tortor. 
-               Integer vehicula nunc et condimentum feugiat. 
-               Aenean tempor, dolor in pharetra euismod, lacus eros suscipit massa, in aliquet risus orci non leo.
-            </p>
-            <p class=""> 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               Nam porttitor sollicitudin efficitur. 
-               Integer posuere odio vel ullamcorper euismod. 
-               Aliquam sit amet nulla tortor. 
-               Integer vehicula nunc et condimentum feugiat. 
-               Aenean tempor, dolor in pharetra euismod, lacus eros suscipit massa, in aliquet risus orci non leo.
-            </p>
-            
-          </div>
+      <div id="why" class="section">
+        <div class="icon-title">
+          🧠 <span>MY WHY</span>
+        </div>
+        <p>I have always been fascinated by how nature flourishes when given the care it deserves. When I was younger, my grandmother would gently water the garden filled with fluttering butterflies and winding green vines. She'd hand me the watering can, encouraging me to help. Those quiet moments—caring for something together—taught me to appreciate how life flourishes when nurtured with love. The garden wasn’t just beautiful—it was alive with purpose, and it planted the first seeds of inspiration in me.</p>
 
-           <!--Why SECTION-->
-          <div id="why" class="w3-container w3-margin-top-20-percent w3-cursive w3-large">
-            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">MY WHY</h2>
-            <p class="w3-margin-top-2"> 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               Nam porttitor sollicitudin efficitur. 
-               Integer posuere odio vel ullamcorper euismod. 
-               Aliquam sit amet nulla tortor. 
-               Integer vehicula nunc et condimentum feugiat. 
-               Aenean tempor, dolor in pharetra euismod, lacus eros suscipit massa, in aliquet risus orci non leo.
-            </p>
-            <p class=""> 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               Nam porttitor sollicitudin efficitur. 
-               Integer posuere odio vel ullamcorper euismod. 
-               Aliquam sit amet nulla tortor. 
-               Integer vehicula nunc et condimentum feugiat. 
-               Aenean tempor, dolor in pharetra euismod, lacus eros suscipit massa, in aliquet risus orci non leo.
-            </p>
-            
-          </div>
-          </div>
-       
-    <script>
-      // Function to toggle mobile navigation
-      function toggleNavigation() {
-        let nav = document.getElementById("mobile-nav");
-        if (nav.classList.contains('w3-show')) {
-          nav.classList.remove('w3-show');
-        } else { 
-          nav.classList.add('w3-show');
-        }
-      }
-    </script>
-    <script>
-      // Script to load feather icons
-      feather.replace()
-    </script>
-  </body>
+        <p>Watching plants grow, seasons change, and life return to places once forgotten fills me with awe and hope. Nature has a quiet strength—it heals, inspires, and connects us to something bigger. Through this game, I want to remind people of the beauty in growth, both in the natural world and within ourselves. We all have the power to nurture and make things bloom, starting with the smallest actions.</p>
+      </div>
+
+      <!-- Daffodil Section -->
+      <div id="daffodil" class="daffodil-section">
+        <h2>Meet Daffodil: Nature's Protector</h2>
+        <!-- Image box for Daffodil -->
+        <div class="daffodil-box">
+          <!-- Replace the src below with the actual image location -->
+          <img src="daffodil.png" alt="Daffodil Character" class="daffodil-img">
+        </div>
+        <div class="daffodil-description">
+          <p><strong>Name:</strong> Daffodil</p>
+          <p><strong>Idea:</strong> A nature-loving, happy dog with a vibrant personality, sporting a pattern of leaves, flowers, and earth tones across her fur. She’s a protector of nature, always on a mission to ensure the environment remains clean and safe from pollution. With her keen sense of smell and sharp instincts, Daffodil is your trusty companion in the fight against environmental harm.</p>
+
+          <p><strong>Personality:</strong> Daffodil is energetic, compassionate, and determined. She embodies the spirit of nature and always looks for ways to help her surroundings. With a deep connection to the environment, she acts as a protector—guiding players to clean up and restore balance. Her playful and empathetic nature makes her the perfect companion for every mission.</p>
+
+          <p><strong>Backstory:</strong> Daffodil wasn’t always a nature guardian. She grew up in a small town near a forest, playing and chasing butterflies. But when pollution began harming the environment, Daffodil made it her mission to protect the natural world. One day, an ancient owl granted her the ability to communicate with nature, helping her become the eco-warrior she is today.</p>
+
+          <p><strong>Role in the Game:</strong> As a key helper, Daffodil works alongside players to clean up natural habitats, clear trash, and restore balance. Her sharp instincts and communication with nature make her a vital guide throughout the game, ensuring players stay on track while they protect and nurture the environment.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
 </html>
